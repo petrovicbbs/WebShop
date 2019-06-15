@@ -1,0 +1,24 @@
+﻿body {
+    /*background-color: #343A3E;*/
+    /*background-image: url('../Images/10475.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;*/
+}
+
+.card {
+    margin: 2px 0 0 0;
+    padding: 10px 2px 2px 2px;
+    align-items: center;
+    border: none;
+}
+
+.card-img-top {
+    margin: 2px 0 0 0;
+    border: none;
+    width: 200px;
+    height: 200px;
+}
+
+h5 {
+    color: grey;
+}

@@ -1,0 +1,35 @@
+﻿h3 {
+    font-weight: bold;
+}
+
+#slajdovi {
+    width: 300px;
+    height: 300px;
+}
+
+.newarrival {
+    background: green;
+    width: 65px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.col-md-7 {
+    color: #555;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart {
+    background: #ff980f;
+    color: #ffffff;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+body {
+}

@@ -1,0 +1,84 @@
+﻿.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+img {
+    pointer-events: none;
+}
+
+#artikal {
+    width: 600px;
+    text-align: center;
+}
+
+.artikli {
+    text-align: left;
+}
+
+form {
+    position: absolute;
+    margin: 50px 20px 20px 20px;
+    left: 20px;
+    top: 20px;
+}
+
+#oznakaRacuna {
+    font-family: AArial,Helvetica Neue,Helvetica,sans-serif;
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+#ukIznos {
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-decoration-color: gray;
+}
+
+#ukIznosLbl {
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-decoration-color: gray;
+}
+
+#datumFakturisanja {
+    text-decoration: underline;
+    text-decoration-style: double;
+    text-decoration-color: black;
+}
+
+.ucesnici p {
+    margin-bottom: 0;
+}
+
+#logo {
+    text-align: center;
+}
+
+#logo img {
+    width: 150px;
+}
+
+.ucesnik {
+    padding-top: 50px;
+    text-decoration: underline;
+}
+
+#pecat {
+    height: 2.75cm;
+    margin-right: 100px;
+}
+
+#storno {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

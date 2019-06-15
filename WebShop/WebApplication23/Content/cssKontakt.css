@@ -1,0 +1,55 @@
+﻿body {
+}
+
+hr {
+    background: red;
+}
+
+.contact-form {
+    background: rgba(0, 0, 0, .6);
+    color: white;
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 3px grey;
+}
+
+h1 {
+    color: gray;
+}
+
+#slideShop {
+    text-align: center;
+    padding: 6px 100px 0px 100px;
+    height: 175px;
+}
+
+#slideShop h1 {
+    text-decoration: underline;
+}
+
+#logoPicDiv {
+    padding-top: 100px;
+    text-align: center;
+}
+
+#ime,#e-mail,#poruka,#dugme{
+    width: 275px;
+}
+
+.modal-content {
+    border: 1px solid gray;
+}
+
+.modal-header {
+    background-color: peachpuff;
+    padding-top: 0px;
+}
+
+.modal-body {
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.modal-footer {
+    text-align: center;
+}

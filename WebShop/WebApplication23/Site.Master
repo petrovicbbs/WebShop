@@ -1,0 +1,449 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WebApplication23.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title><%: Page.Title %></title>
+
+	<asp:PlaceHolder runat="server">
+		<%: Scripts.Render("~/bundles/modernizr") %>
+	</asp:PlaceHolder>
+
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<webopt:BundleReference runat="server" Path="~/Content/css" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="Scripts/jquery-3.3.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="Content/StyleSheet1.css">
+</head>
+<body>
+	<form name="form1" runat="server">
+		<asp:ScriptManager runat="server">
+			<Scripts>
+				<%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+				<%--Framework Scripts--%>
+				<asp:ScriptReference Name="MsAjaxBundle" />
+				<asp:ScriptReference Name="jquery" />
+				<asp:ScriptReference Name="bootstrap" />
+				<asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+				<asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+				<asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+				<asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+				<asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+				<asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+				<asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+				<asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+				<asp:ScriptReference Name="WebFormsBundle" />
+				<%--Site Scripts--%>
+			</Scripts>
+		</asp:ScriptManager>
+		<div class="d-flex" id="wrapper">
+			<!-- Sidebar -->
+			<div class="bg-light border-right" id="sidebar-wrapper">
+				<div class="list-group list-group-flush bg-dark" runat="server" id="sidebarKatArt">
+				</div>
+			</div>
+			<!-- Navigacioni meni -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+				<div class="container">
+					<img id="menu-toggle" class="rounded-circle" src="Images/kategorijeArtikla.png" style="width: 35px;" alt="icoKategorijeArtikala" title="Kategorije artikala" />
+					<button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" title="Stranice">
+						&#9776;
+					</button>
+					<div class="collapse navbar-collapse" id="exCollapsingNavbar">
+						<ul class="nav navbar-nav">
+							<li class="nav-item active"><a href="Default.aspx" class="nav-link">Glavna</a></li>
+							<li class="nav-item"><a href="Kontakt.aspx" class="nav-link">Kontakt</a></li>
+							<li class="nav-item">
+								<% if (Session["userAuthentication"] != null)
+									{
+										if (Session["userAuthentication"].ToString() == "A" || Session["userAuthentication"].ToString() == "Z")
+										{%>
+								<a href="Podesavanja.aspx" runat="server" id="btnPodesavanja" class="nav-link">Podešavanja</a>
+								<%    }
+									}%>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+							<%  if (Session["userID"] == null)
+								{%>
+							<li class="nav-item"><a data-toggle="modal" runat="server" id="btnLogInMod" data-target="#LogIn" class="nav-link">Prijava</a>
+							</li>
+							<li class="nav-item"><a data-toggle="modal" runat="server" id="btnReg" data-target="#reg" class="nav-link">Registracija</a>
+							</li>
+							<%  }
+								else
+								{%>
+							<li class="nav-item"><a data-toggle="modal" runat="server" id="userName" data-target="#userProfil" class="nav-link"><%=Session["userName"]%></a>
+							</li>
+							<%  }%>
+							<%  if (Session["userID"] != null)
+								{%>
+							<li class="nav-item"><a id="btnKorpa" data-toggle="modal" data-target="#Basket">
+								<img src="Images/basket2.png" style="width: 20px; height: 20px;" alt="Korpa">
+							</a>
+							</li>
+							<%  }%>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!--CONTENT-->
+			<div class="container body-content">
+				<asp:ContentPlaceHolder ID="MainContent" runat="server">
+				</asp:ContentPlaceHolder>
+			</div>
+		</div>
+
+		<%--▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓LogIn▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓--%>
+		<%-- modal Prijava --%>
+		<div class="modal fade" id="LogIn" tabindex="-1" role="dialog" aria-labelledby="ArtModalLabel" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered" id="btnLogIn">
+				<div class="modal-content">
+					<div class="modal-header">
+						<img class="noselect" id="logImg" src="Images\comtrade.png" alt="" width="72" height="72">
+						<h1 class="h3 mb-3 font-weight-normal noselect" id="titleSignIn">Ulogujte se</h1>
+					</div>
+					<div class="modal-body form-signin shadow p-3 bg-#f5f5f5 rounded">
+						<input type="text" runat="server" name="userName" id="userNameLog" title="Mora sadržati bar 5 karaktera i mora počinjati slovom" pattern="[a-zA-Z]{1,}[a-zA-Z0-9_.]{4,}" class="form-control" placeholder="Korisničko ime">
+						<input type="password" name="userPassLog" id="inputPassword" class="form-control" title="Mora sadržati bar 5 karaktera i mora počinjati slovom" pattern="[a-zA-Z]{1,}[a-zA-Z0-9_.]{4,}" placeholder="Korisnička šifra" runat="server">
+						<br />
+						<asp:Button runat="server" ID="logBtn" OnClick="logBtn_Click" class="btn btn-lg btn-primary btn-block" type="submit" Text="Uloguj se" />
+						<button type="button" data-toggle="modal" data-target="#reg" class="btn btn-sm btn-secondary btn-block">Registruj se</button>
+					</div>
+					<div class="modal-footer">
+						<p class="msg h5 alert">.NET programiranje / Powered By Nacionalna služba za zapošljavanje / #-ed By CODE and Miloš Pušić</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%-- modal los userName i/ili sifra --%>
+		<div class="modal fade" id="BadLogIn" tabindex="-1" role="dialog" aria-labelledby="ArtModalLabel" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="h3 mb-3 font-weight-normal noselect">Neispravan unos</h1>
+					</div>
+					<div class="modal-body form-signin shadow p-3 bg-#f5f5f5 rounded">
+						<asp:Label Text="Neispravan unos korisničkog imena i/ili šifre!" runat="server" />
+						<br />
+						<asp:Label Text="Pokušajte ponovo!" runat="server" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-secondary" data-dismiss="modal">Izađi</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%--▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓REGISTRACIJA▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓--%>
+		<div class="modal fade" id="reg" tabindex="-1" role="dialog" aria-labelledby="SuppModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Registracija</h5>
+					</div>
+					<div class="modal-body">
+						<asp:Label Text="Korisničko ime" runat="server" /><br />
+						<asp:TextBox ID="regUserName" title="Korisničko ime: Mora sadržati bar 5 alfanumeričkih karaktera i mora početi slovom." pattern="[a-zA-Z]{1,}[a-zA-Z0-9_.]{4,}" runat="server" />
+						<br />
+						<asp:Label Text="Korisnička šifra" runat="server" /><br />
+						<asp:TextBox type="password" ID="regUserPass" title="Korisnička šifra: Mora sadržati bar 5 alfanumeričkih karaktera i mora početi velikim slovom." pattern="[A-Z]{1,}[a-zA-Z0-9_.]{4,}" runat="server" />
+						<br />
+						<asp:Label Text="Ponovite šifru" runat="server" /><br />
+						<asp:TextBox type="password" oninput="check(this)" ID="regUserPass2" title="Ponovite izabranu šifru." pattern="[A-Z]{1,}[a-zA-Z0-9_.]{4,}" runat="server" />
+						<br />
+						<asp:Label Text="Ime" runat="server" /><br />
+						<asp:TextBox ID="regUserFirstName" title="Ime: Mora sadržati bar 3 slova i mora početi velikim slovom." pattern="[^0-9]*" runat="server" />
+						<br />
+						<asp:Label Text="Prezime" runat="server" /><br />
+						<asp:TextBox ID="regUserLastName" title="Prezime: Mora sadržati bar 5 slova i mora početi velikim slovom." pattern="[^0-9]*" runat="server" />
+						<br />
+						<asp:Label Text="Adresa" runat="server" /><br />
+						<asp:TextBox ID="regUserAdress" title="Adresa: Adresa sedišta firme ili poslovnice tj. ogranka. Mora početi velikim slovom." runat="server" />
+						<br />
+						<asp:Label Text="Grad" runat="server" /><br />
+						<asp:DropDownList ID="regUserCity" runat="server"></asp:DropDownList>
+						<br />
+						<asp:Label Text="Kontakt telefon" runat="server" /><br />
+						<asp:TextBox ID="regUserPhone" pattern="(+)+[0-9/\- ]{9,}" title="Kontakt telefon: Mora sadržati bar 9 cifara 0-9." runat="server" />
+						<br />
+						<asp:Label Text="E-mail" runat="server" /><br />
+						<asp:TextBox type="email" ID="regUserEmail" title="Elektronska pošta: Mora sadržati bar 3 alfanumeričkih karaktera, za kojima sledi '@', zatim provajder i domen." pattern="[A-Z]{1,}[a-zA-Z0-9]{2,}+@[a-zA-z]{2,}+\.[a-zA-z]{2,}(.[a-zA-z]{2,})" runat="server" />
+						<br />
+						<asp:Label Text="Matični broj" runat="server" /><br />
+						<asp:TextBox ID="regUserMatBr" pattern="\d{9}|\d{13}" title="Matični broj: Matični broj preduzeća je po osnivanju dodeljen od strane APR-a. Mora sadržati 8 cifara 0-9." runat="server" />
+						<br />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-secondary" data-dismiss="modal">Izađi</button>
+						<button type="button" style="padding-bottom: 5px;" data-toggle="modal" data-target="#regChck" class="hl-btn btn-secondary">Registruj se</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- ▓ Modal regChck ▓-->
+		<div class="modal fade" id="regChck" tabindex="-1" role="dialog" aria-labelledby="SuppModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Upravo ćete se registrovati</h5>
+					</div>
+					<div class="modal-body">
+						<label>Da li ste završili sa unosom podataka za registraciju?</label>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-default" data-dismiss="modal">Ne</button>
+						<asp:Button ID="btnRegChck" OnClick="btnRegChck_Click" class="hl-btn btn-default" runat="server" Text="Da" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%--▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓PROFIL▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓--%>
+		<div class="modal fade" id="userProfil" tabindex="-1" role="dialog" aria-labelledby="ArtModalLabel" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered" id="btnUserProfil">
+				<div class="modal-content">
+					<div class="modal-header">
+						<img class="noselect" src="Images/user.png" alt="" style="width: 72px; height: 72px; border-radius: 10px;">
+						<h1 class="h3 mb-3 font-weight-normal noselect"><%=Session["userName"]%></h1>
+					</div>
+					<div class="modal-body form-signin shadow p-3 bg-#f5f5f5 rounded">
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Korisničko ime" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilUserName" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Ime" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilName" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Prezime" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilLastName" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Adresa" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilAdresa" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Grad" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilGrad" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Telefon" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilTelefon" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="E-mail" runat="server" />
+							</div>
+							<div class="col-6">
+								<input type="text" class="text-center" id="profilEmail" value="" runat="server" disabled />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<asp:Label Text="Status" runat="server" />
+							</div>
+							<div class="col-6">
+								<%--<%   %>--%>
+
+								<% if (Session["userAuthentication"] == null || Session["userAuthentication"].ToString() == "")
+									{%>
+								<input type="text" class="text-center" value="N/A" runat="server" disabled />
+								<%}
+									else
+									{
+										if (Session["userAuthentication"].ToString() == "A")
+										{  %>
+								<input type="text" class="text-center" value="Administrator" runat="server" disabled />
+								<%}
+									else if (Session["userAuthentication"].ToString() == "Z")
+									{  %>
+								<input type="text" class="text-center" value="Zaposleni" runat="server" disabled />
+								<%}
+									else
+									{  %>
+								<input type="text" class="text-center" value="Registrovani korisnik" runat="server" disabled />
+								<%}
+									}%>
+							</div>
+						</div>
+						<div class="row zaglavljeProfila">
+							<div class="col-6">
+								<asp:ListBox runat="server" ID="userFak"></asp:ListBox>
+							</div>
+							<div class="col-6" id="btnOpen">
+								<button type="button" class="hl-btn btn-secondary" id="showFakturu2">Otvori</button>
+							</div>
+						</div>
+						<br />
+						<div class="row zaglavljeProfila">
+							<div class="col-6">
+								<button type="button" class="btn btn-secondary " data-dismiss="modal">Izađi</button>
+							</div>
+							<div class="col-6">
+								<asp:Button runat="server" ID="logOutBtn" name="logOutBtn" OnClick="LogOutBtn_Click" class="btn btn-secondary" Text="Odjavi se" />
+							</div>
+							<hr />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<p class="msg h5 alert">.NET programiranje / Powered By Nacionalna služba za zapošljavanje / #-ed By CODE and Miloš Pušić</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%-- modal selektujte fakturu --%>
+		<div class="modal fade" id="selektuj2" tabindex="-1" role="dialog" aria-labelledby="SuppModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Nije selektovna faktura!</h5>
+					</div>
+					<div class="modal-body">
+						<asp:Label Text="Morate selektovati fakturu koju želite da pregledate!" runat="server" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-default" data-dismiss="modal">oK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%--▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓KORPA▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓--%>
+		<%-- modal Korpa --%>
+		<div class="modal fade" id="Basket" tabindex="-1" role="dialog" aria-labelledby="BasModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="row">
+							<div class="col-6">
+								<h1 class="h3 mb-3 font-weight-normal noselect" style="text-align: left">Korpa</h1>
+							</div>
+							<div class="col-6" style="text-align: right">
+								<h3><%=Session["userName"]%></h3>
+							</div>
+						</div>
+					</div>
+					<div class="modal-body form-signin shadow p-3 bg-#f5f5f5 rounded">
+						<div id="sadrzajKorpe" runat="server">
+						</div>
+						<label>Napomena:</label>
+						<asp:TextBox ID='txtNapomena' runat='server' />
+					</div>
+					<div class="modal-footer">
+						<div class="row" runat="server" id="Div2">
+							<div class="col-4">
+								<button type="button" id="clsKorpa" title="Izaći iz korpe" class="btn btn-secondary" data-dismiss="modal">Izađi</button>
+							</div>
+							<div class="col-4">
+								<button type="button" id="obrišiKorpu" title="Obrisati sve iz korpe" class="btn btn-secondary" data-toggle="modal" data-target="#clearCheck">
+									<img style="width: 20px; height: 20px;" src="Images/Clear.png" /></button>
+							</div>
+							<div class="col-4">
+								<button type="button" id="btnShop" title="Kupovina" class="btn btn-secondary" data-toggle="modal" data-target="#shopCheck">Kupi</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%-- modal Provera brisanja sadržaja korpe --%>
+		<div class="modal fade" id="clearCheck" tabindex="-1" role="dialog" aria-labelledby="SuppModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Brisanje sadržaja korpe!</h5>
+					</div>
+					<div class="modal-body">
+						<asp:Label Text="Da li ste sigurni da želite obrisati kompletan sadržaj korpe?" runat="server" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-default" data-dismiss="modal">Ne</button>
+						<asp:Button ID="btnclearCheck" OnClick="btnclearCheck_Click" class="hl-btn btn-default" runat="server" Text="Da" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<%-- modal Provera kupovine --%>
+		<div class="modal fade" id="shopCheck" tabindex="-1" role="dialog" aria-labelledby="SuppModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Kompletiranje kupovine</h5>
+					</div>
+					<div class="modal-body">
+						<asp:Label Text="Da li ste sigurni da ste kompletirali porudžbinu?" runat="server" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="hl-btn btn-default" data-dismiss="modal">Ne</button>
+						<asp:Button ID="btnShopCheck" OnClick="btnShopCheck_Click" class="hl-btn btn-default" runat="server" Text="Da" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="Scripts/JavaScript.js"></script>
+		<script>
+			document.getElementById('showFakturu2').addEventListener('click', function () {
+				var oznaka = $('#userFak').val();
+				if (oznaka != null && oznaka != '') {
+					var objekat = { racun: oznaka };
+					$.ajax({
+						url: "Default.aspx/openFakturu",
+						method: "POST",
+						contentType: "application/json; charset=utf-8",
+						data: JSON.stringify(objekat),
+						success: function () {
+							window.open('Faktura.aspx', '_blank');
+						},
+						error: function () {
+							alert("ne radi");
+						}
+					})
+				}
+				else {
+					$('#selektuj2').modal('show');
+				}
+			});
+		</script>
+
+	</form>
+</body>
+</html>

@@ -1,0 +1,190 @@
+﻿#panel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #e5eecc;
+    border: solid 1px #c3c3c3;
+}
+
+
+#panel {
+    padding: 50px;
+    display: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.modal-header {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+#btnLogIn {
+    width: 240px;
+}
+
+#logImg {
+    animation: rotateRight 4s infinite linear; /* Standardno */
+    -moz-animation: rotateRight 4s infinite linear; /* Mozzila */
+    -webkit-animation: rotateRight 4s infinite linear; /* Safari & Chrome */
+    -o-animation: rotateRight 4s infinite linear; /* Opera */
+    margin: 0;
+}
+/* Standardno */
+@keyframes rotateRight {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Mozzila */
+@-moz-keyframes rotateRight {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Safari & Chrome */
+@-webkit-keyframes rotateRight {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* Opera */
+@-o-keyframes rotateRight {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.modal-footer {
+    vertical-align: top;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+.msg {
+    vertical-align: middle;
+    background-color: none;
+    bottom: 0;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    animation-play-state: paused;
+    animation: rightLeft 12s infinite linear; /* Standardno */
+    -moz-animation: rightLeft 12s infinite linear; /* Mozzila */
+    -webkit-animation: rightLeft 12s infinite linear; /* Safari 4.0 - 8.0 */
+    -o-animation: rightLeft 12s infinite linear; /* Opera */
+}
+/* Standardno */
+@keyframes rightLeft {
+    from {
+        left: 470%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+/* Mozzila */
+@-moz-keyframes rightLeft {
+    from {
+        left: 470%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes rightLeft {
+    from {
+        left: 470%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+/* Opera */
+@-o-keyframes rightLeft {
+    from {
+        left: 470%;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+    #sidebar-wrapper .sidebar-heading {
+        padding: 0.875rem 1.25rem;
+        font-size: 1.2rem;
+    }
+
+    #sidebar-wrapper .list-group {
+        width: 15rem;
+    }
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -15rem;
+    }
+
+    #menu-toggle {
+        display: none;
+    }
+}
+
+button:focus {
+    outline: 0;
+}
+
+.navbar .dropdown-menu .form-control {
+    width: 200px;
+}
+
+.uskoro {
+    border:solid 2px red;
+}
+
+#btnOpen {
+    margin-top: 30px;
+}
+
+.zaglavljeProfila {
+    text-align: center;
+}

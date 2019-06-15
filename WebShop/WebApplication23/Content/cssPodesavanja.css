@@ -1,0 +1,287 @@
+﻿body {
+    background-image: URL("../Images/glavna.png");
+    background-size: cover;
+}
+
+.listBox {
+    color: #5a5a5b;
+    background-color: #faf8f3;
+    border-radius: 20px;
+    max-width: 700px;
+    min-width: 250px;
+    min-height: 200px;
+}
+
+#MainContent_fileUploadNew {
+    margin-top: 5px;
+    opacity: 1;
+}
+
+
+#MainContent_fileUpload {
+    margin-top: 5px;
+    opacity: 1;
+}
+
+#newItems2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newItems2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newSupplier2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newSupplier2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updItems2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updItems2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updSupplier2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updSupplier2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newShop2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newShop2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updShop2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updShop2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newUser2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#newUser2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updUser2 input {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+#updUser2 select {
+    text-align: center;
+    height: 35px;
+    width: 250px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.naslov {
+    font-size: 24px;
+}
+
+#logStanja .modal-body {
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+#logStanja .modal-content {
+    width: auto;
+}
+
+#logStanja .modal-footer {
+    padding: 5px 0px;
+}
+
+
+#showStanje .modal-footer {
+    padding: 5px 0px;
+}
+
+#showStanje .modal-content {
+    text-align: center;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#showStanje .modal-body {
+    padding-bottom: 0px;
+}
+
+#showStanjeZaglavlje {
+    text-align: center;
+}
+
+    #showStanjeZaglavlje .col-2 {
+        padding-left: 0px;
+        text-align: left;
+    }
+
+        #showStanjeZaglavlje .col-2 .btn-secondary {
+            margin-top: 23px;
+            margin-left: 0px;
+        }
+
+#showFakture .modal-content {
+    width: auto;
+}
+
+#showFakture .modal-footer {
+    padding: 10px 0 0 0;
+}
+
+#MainContent_newStanjeShop {
+    width: 100px;
+    height: 30px;
+}
+
+#MainContent_newStanjeArt {
+    width: 185px;
+    height: 30px;
+}
+
+#MainContent_newStanjeQty {
+    width: 80px;
+    height: 30px;
+}
+
+#dodajStanje .modal-content {
+    text-align: center;
+    width: 100%;
+}
+
+#dodajStanje .modal-footer {
+    padding: 5px 0 5px 0;
+}
+
+#showStanje #MainContent_stShop {
+    width: 100px;
+    height: 30px;
+}
+
+#showStanje #MainContent_stItem {
+    width: 185px;
+    height: 30px;
+}
+
+#MainContent_showFaktureList {
+    height: 170px;
+    width: 160px;
+}
+
+#MainContent_showFakturu {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+#osveziFakturu {
+    margin-top: 24px;
+}
+
+#showFakture .modal-body {
+    width: 400px;
+    height: 300px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+#MainContent_chgStanjeQty {
+    width: 50px;
+}
+
+.modal-content {
+    border: 1px solid gray;
+}
+
+.modal-header {
+    background-color: peachpuff;
+    padding-top: 0px;
+}
+
+
+.modal-body {
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+#izmeniStanje input {
+    height: 25px;
+}
+
+#dodajStanje select {
+    height: 25px;
+}
+
+#dodajStanje input {
+    height: 25px;
+    width: 50px;
+}
+
+#updArt2 .modal-dialog {
+    text-align: center;
+}
+
+#updArt2 input {
+    height: 30px;
+    width: 300px;
+}
+
+#updArt2 select {
+    height: 30px;
+    width: 300px;
+}
+
+.description {
+    height: 300px;
+}
