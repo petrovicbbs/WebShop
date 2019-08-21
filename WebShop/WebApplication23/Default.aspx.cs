@@ -53,8 +53,11 @@ namespace WebApplication23
                 else itemCategory = kategorija;
                 string itemPrice = dt.Rows[i]["Cena"].ToString();
                 string itemName = dt.Rows[i]["Naziv"].ToString();
-                string mainPhoto = "Images/Kategorija/" + itemCategory + "/" + itemId + "/1.png";
-                artikli += "<div class='col-12 col-sm-10 col-md-6 col-lg-6 col-xl-4'>	<div class='card bg-dark box-shadow'>	<img class='card-img-top' id='itemPhoto" + i + "' src='" + mainPhoto + "'>	<div class='card-body'>	<asp:HyperLink ID='item" + i + "' runat='server'>	<p class='card-text text-light' id='itemName" + i + "'>" + itemName + "</p>	</asp:HyperLink>	<div class='d-flex justify-content-between align-items-center'>	<div class='btn-group' role='group'>	<button type = 'button' class='btn btn-sm btn-outline-secondary detaljnije' id='detaljnije" + itemId + "' onclick='openItem();' Value=" + itemId + ">Detaljnije</button>	<button type='button' class='btn btn-sm btn-outline-secondary inBasket' id='inBasket" + itemId + "' runat='server' Value='" + itemId + "' >Ubaci u korpu</button>    	</div>	<h5>" + itemPrice + " RSD</h5>	</div>	</div>	</div>	</div>";
+                if (int.Parse(dt.Rows[i]["Kolicina"].ToString()) > 0)
+                {
+                    string mainPhoto = "Images/Kategorija/" + itemCategory + "/" + itemId + "/1.png";
+                    artikli += "<div class='col-12 col-sm-10 col-md-6 col-lg-6 col-xl-4'>	<div class='card bg-dark box-shadow'>	<img class='card-img-top' id='itemPhoto" + i + "' src='" + mainPhoto + "'>	<div class='card-body'>	<asp:HyperLink ID='item" + i + "' runat='server'>	<p class='card-text text-light' id='itemName" + i + "'>" + itemName + "</p>	</asp:HyperLink>	<div class='d-flex justify-content-between align-items-center'>	<div class='btn-group' role='group'>	<button type = 'button' class='btn btn-sm btn-outline-secondary detaljnije' id='detaljnije" + itemId + "' onclick='openItem();' Value=" + itemId + ">Detaljnije</button>	<button type='button' class='btn btn-sm btn-outline-secondary inBasket' id='inBasket" + itemId + "' runat='server' Value='" + itemId + "' >Ubaci u korpu</button>    	</div>	<h5>" + itemPrice + " RSD</h5>	</div>	</div>	</div>	</div>";
+                }
             }
             parent.InnerHtml = artikli;
         }
@@ -93,7 +96,7 @@ namespace WebApplication23
                 da.Fill(dt);
                 int naStanju = int.Parse(dt.Rows[0]["Stanje"].ToString());
 
-               if(askedQty<=naStanju)
+                if (askedQty <= naStanju)
                 {
                     int userId = int.Parse(HttpContext.Current.Session["userId"].ToString());
 
@@ -106,9 +109,10 @@ namespace WebApplication23
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-               else
-                {
-                }
+            }
+            else
+            {
+                //za otvaranje LogIn modala
             }
         }
         #endregion
